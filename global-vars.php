@@ -4,7 +4,7 @@
 Plugin Name: Global Vars
 Plugin URI: Create global variables for your post
 Description: A brief description of the Plugin.
-Version: 1.7
+Version: 1.8
 Author: ifkooo
 Author URI: http://URI_Of_The_Plugin_Author
 License: A "Slug" license name e.g. GPL2
