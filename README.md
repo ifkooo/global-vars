@@ -19,9 +19,12 @@ You can manage shortcodes and add them to your posts
 
 = 2.4 =
 * Fix readme
+
 = 2.3 =
 * Fix readme
+
 = 2.2 =
 * Fix readme
+
 = 2.1 =
 * Fix readme
