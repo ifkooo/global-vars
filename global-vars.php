@@ -1,20 +1,58 @@
 <?php
-
 /*
-Plugin Name: Global Vars
-Plugin URI: Create global variables for your post
-Description: A brief description of the Plugin.
-Version: 1.8
-Author: ifkooo
-Author URI: http://URI_Of_The_Plugin_Author
-License: A "Slug" license name e.g. GPL2
+Plugin Name: Global vars
+Description: Create global variables for your post
+Version: 1.9
+Author: IT Dev Pro ltd
+Author URI: https://itdevpro.com/
+Plugin URI: https://itdevpro.com/wp/global-vars
 */
 
 /* Check & Quit */
 defined( 'ABSPATH' ) OR exit;
 
+define('ver', '1.9');
 
-getVar();
+add_action( 'init', 'github_plugin_updater_test_init' );
+
+function github_plugin_updater_test_init() {
+	include_once 'updater.php';
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+	if ( is_admin() ) {
+		include_once( 'updater.php' );
+		// note the use of is_admin() to double check that this is happening in the admin
+		$config = array(
+			'slug'               => plugin_basename( __FILE__ ),
+			// this is the slug of your plugin
+			'proper_folder_name' => 'global-vars',
+			// this is the name of the folder your plugin lives in
+			'api_url'            => 'https://api.github.com/repos/ifkooo/global-vars',
+			// the GitHub API url of your GitHub repo
+			'raw_url'            => 'https://raw.github.com/ifkooo/global-vars/master',
+			// the GitHub raw url of your GitHub repo
+			'github_url'         => 'https://github.com/ifkooo/global-vars',
+			// the GitHub url of your GitHub repo
+			'zip_url'            => 'https://github.com/ifkooo/global-vars/zipball/master',
+			// the zip url of the GitHub repo
+			'sslverify'          => true,
+			// whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+			'requires'           => '4.0',
+			// which version of WordPress does your plugin require?
+			'tested'             => '4.9.8',
+			// which version of WordPress is your plugin tested up to?
+			'readme'             => 'README.md',
+			// which file to use as the readme for the version number
+			'access_token'       => '',
+			// Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
+		);
+		new WP_GitHub_Updater( $config );
+	}
+}
+add_action( 'init', 'getVar' );
+
+
+
 
 
 /**
@@ -84,34 +122,34 @@ function showOptions() {
 
 	?>
 
-	<style>
+    <style>
 
-	</style>
-	<div class="wrap">
-		<h1>Global variables</h1>
-		<div class="panel">
-			<div class="panel-title">
-				<h3>Here you can see list with your variables</h3>
-			</div>
-			<div class="panel-body">
+    </style>
+    <div class="wrap">
+        <h1>Global variables ver: <?echo ver; ?></h1>
+        <div class="panel">
+            <div class="panel-title">
+                <h3>Here you can see list with your variables</h3>
+            </div>
+            <div class="panel-body">
 
-				<form action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI'] ); ?>" method="post">
+                <form action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI'] ); ?>" method="post">
 
 
 					<?php for ( $i = 0; $i < count( $list ); $i ++ ) { ?>
 
-						<div class="form-group">
-							<label><?php echo $list[ $i ]["title"]; ?></label>
-							<span class="help">Use [gv_<?php echo $list[ $i ]["name"]; ?>]</span>
+                        <div class="form-group">
+                            <label><?php echo $list[ $i ]["title"]; ?></label>
+                            <span class="help">Use [gv_<?php echo $list[ $i ]["name"]; ?>]</span>
 							<?php createFormField( $list[ $i ]["type"], $list[ $i ]["name"], $gv[ $list[ $i ]["name"] ] ); ?>
-						</div>
+                        </div>
 					<?php } ?>
-					<input name="change-clicked" type="hidden" value="1"/>
-					<input type="submit" class="button-primary" value="Set values"/>
-				</form>
-			</div>
-		</div>
-	</div>
+                    <input name="change-clicked" type="hidden" value="1"/>
+                    <input type="submit" class="button-primary" value="Set values"/>
+                </form>
+            </div>
+        </div>
+    </div>
 	<?php
 }
 
