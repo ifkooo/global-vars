@@ -2,7 +2,7 @@
 /*
 Plugin Name: Global vars
 Description: Create global variables for your post
-Version: 2.1
+Version: 2.2
 Author: IT Dev Pro ltd
 Author URI: https://itdevpro.com/
 Plugin URI: https://itdevpro.com/wp/global-vars
@@ -11,7 +11,7 @@ Plugin URI: https://itdevpro.com/wp/global-vars
 /* Check & Quit */
 defined( 'ABSPATH' ) OR exit;
 
-define('ver', '2.1');
+define('ver', '2.2');
 
 add_action( 'init', 'github_plugin_updater_test_init' );
 
