@@ -2,7 +2,7 @@
 /*
 Plugin Name: Global vars
 Description: Create global variables for your post
-Version: 2.2
+Version: 2.3
 Author: IT Dev Pro ltd
 Author URI: https://itdevpro.com/
 Plugin URI: https://itdevpro.com/wp/global-vars
@@ -11,15 +11,16 @@ Plugin URI: https://itdevpro.com/wp/global-vars
 /* Check & Quit */
 defined( 'ABSPATH' ) OR exit;
 
-define('ver', '2.2');
+define('ver', '2.3');
 
 add_action( 'init', 'github_plugin_updater_test_init' );
 
 function github_plugin_updater_test_init() {
+	include_once( 'updater.php' );
+
 	define( 'WP_GITHUB_FORCE_UPDATE', true );
 
 	if ( is_admin() ) {
-		include_once( 'updater.php' );
 		// note the use of is_admin() to double check that this is happening in the admin
 		$config = array(
 			'slug'               => plugin_basename( __FILE__ ),
