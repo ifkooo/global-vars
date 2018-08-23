@@ -17,8 +17,11 @@ You can manage shortcodes and add them to your posts
 
 == Changelog ==
 
-= 2.4 =
+= 2.7 =
 * Fix readme
+
+= 2.4 =
+ * Fix readme
 
 = 2.3 =
 * Fix readme

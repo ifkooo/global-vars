@@ -6,13 +6,13 @@ Author: IT Dev Pro ltd
 Author URI: https://itdevpro.com/
 Plugin URI: https://github.com/ifkooo/global-vars
 License: GPLv2 or later
-Version: 2.4
+Version: 2.7
 */
 
 /* Check & Quit */
 defined( 'ABSPATH' ) OR exit;
 
-define('ver', '2.3');
+define('ver', '2.7');
 
 add_action( 'init', 'github_plugin_updater_test_init' );
 
