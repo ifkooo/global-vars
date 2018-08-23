@@ -16,7 +16,6 @@ define('ver', '1.9');
 add_action( 'init', 'github_plugin_updater_test_init' );
 
 function github_plugin_updater_test_init() {
-	include_once 'updater.php';
 	define( 'WP_GITHUB_FORCE_UPDATE', true );
 
 	if ( is_admin() ) {
