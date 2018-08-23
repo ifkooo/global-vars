@@ -2,10 +2,11 @@
 /*
 Plugin Name: Global vars
 Description: Create global variables for your post
-Version: 2.3
 Author: IT Dev Pro ltd
 Author URI: https://itdevpro.com/
-Plugin URI: https://itdevpro.com/wp/global-vars
+Plugin URI: https://github.com/ifkooo/global-vars
+License: GPLv2 or later
+Version: 2.4
 */
 
 /* Check & Quit */
