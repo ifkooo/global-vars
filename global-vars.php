@@ -36,9 +36,9 @@ function github_plugin_updater_test_init() {
 			// the zip url of the GitHub repo
 			'sslverify'          => true,
 			// whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
-			'requires'           => '4.0',
+			'requires'           => '4.6',
 			// which version of WordPress does your plugin require?
-			'tested'             => '4.9.8',
+			'tested'             => '4.9',
 			// which version of WordPress is your plugin tested up to?
 			'readme'             => 'README.md',
 			// which file to use as the readme for the version number
