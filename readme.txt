@@ -17,6 +17,9 @@ You can manage shortcodes and add them to your posts
 
 == Changelog ==
 
+= 3.3 =
+* Fix CSS
+
 = 3.1 =
 * Bug fix readme file
 

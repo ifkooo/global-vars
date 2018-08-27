@@ -35,7 +35,7 @@ function showOptions() {
 
 	$style = 'gv';
 	if ( ( ! wp_style_is( $style, 'queue' ) ) && ( ! wp_style_is( $style, 'done' ) ) ) {
-		wp_enqueue_style( $style, plugins_url( '/assets/style.css', __FILE__ ) );
+		wp_enqueue_style( $style, plugins_url( '../assets/style.css', __FILE__ ) );
 	}
 
 	?>
