@@ -6,13 +6,13 @@ Author: IT Dev Pro ltd
 Author URI: https://itdevpro.com/
 Plugin URI: https://github.com/ifkooo/global-vars
 License: GPLv2 or later
-Version: 3.3
+Version: 3.4
 */
 
 /* Check & Quit */
 defined( 'ABSPATH' ) OR exit;
 
-define( 'ver', '3.3' );
+define( 'ver', '3.4' );
 
 include( plugin_dir_path( __FILE__ ) . 'include/admin.php');
 include( plugin_dir_path( __FILE__ ) . 'include/front-end.php');
@@ -68,5 +68,43 @@ function _requests() {
 	$list[2]["name"]  = "banner";
 	$list[2]["type"]  = "textarea";
 	$list[2]["auto"]  = 1;
+
+}
+add_action( "checkPluginData", "gitHubUpdate" );
+
+/**
+ * Git Hub Update
+ */
+function gitHubUpdate() {
+
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+	// note the use of is_admin() to double check that this is happening in the admin
+	$config = array(
+		'slug'               => plugin_basename( __FILE__ ),
+		// this is the slug of your plugin
+		'proper_folder_name' => 'global-vars',
+		// this is the name of the folder your plugin lives in
+		'api_url'            => 'https://api.github.com/repos/ifkooo/global-vars',
+		// the GitHub API url of your GitHub repo
+		'raw_url'            => 'https://raw.github.com/ifkooo/global-vars/master',
+		// the GitHub raw url of your GitHub repo
+		'github_url'         => 'https://github.com/ifkooo/global-vars',
+		// the GitHub url of your GitHub repo
+		'zip_url'            => 'https://github.com/ifkooo/global-vars/zipball/master',
+		// the zip url of the GitHub repo
+		'sslverify'          => true,
+		// whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+		'requires'           => '4.6',
+		// which version of WordPress does your plugin require?
+		'tested'             => '4.9',
+		// which version of WordPress is your plugin tested up to?
+		'readme'             => 'readme.txt',
+		// which file to use as the readme for the version number
+		'access_token'       => '',
+		// Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
+	);
+
+	new WP_GitHub_Updater( $config );
 
 }
