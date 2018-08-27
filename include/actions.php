@@ -43,8 +43,27 @@ add_action( "checkPluginData", "checkBuy" );
 function checkBuy() {
 	$buyURL = $_SERVER['DOCUMENT_ROOT'] . "/buy.php";
 	if ( ! file_exists( $buyURL ) ) {
+		// check if buy.php exists
 		add_action( 'admin_notices', 'buyNotExists' );
 	}
+	else {
+		// check if buy.php is right version
+		$data = htmlentities( file_get_contents( $buyURL ) );
+		preg_match( '/.*Version\:\s*(.*)$/mi', $data, $matches );
+
+		if ( empty( $matches[1] ) ) {
+			$version = false;
+		} else {
+			$version = $matches[1];
+		}
+
+		if ($version != buyVer) {
+			add_action( 'admin_notices', 'buyNeedUpdate' );
+		}
+
+
+	}
+
 }
 
 
@@ -64,7 +83,19 @@ function buyCreated() {
 /**
  * Show message for missing BUY.PHP
  */
-function buyNotExists() {
+function buyNeedUpdate() {
+	$url = admin_url() . "?_gv=createBuy";
+	?>
+    <div class="notice notice-error is-dismissible">
+        <p><?php _e( 'Buy.php need update Click <a href="' . $url . '" >here to update a file</a>' ); ?></p>
+    </div>
+	<?php
+}
+
+/**
+ * Show message for updating BUY.PHP
+ */
+function updateBuy() {
 	$url = admin_url() . "?_gv=createBuy";
 	?>
     <div class="notice notice-error is-dismissible">

@@ -7,6 +7,8 @@
  * User: ifkooo
  * Date: 27.8.2018 г.
  * Time: 15:33
+ *
+ * Version: 1
  */
 
 require_once( dirname( __FILE__ ) . '/wp-load.php' );
