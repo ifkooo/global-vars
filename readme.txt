@@ -17,6 +17,9 @@ You can manage shortcodes and add them to your posts
 
 == Changelog ==
 
+= 3.0 =
+* Auto create buy.php file
+
 = 2.7 =
 * Fix readme
 
