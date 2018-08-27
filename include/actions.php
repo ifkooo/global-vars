@@ -76,7 +76,7 @@ function gitHubUpdate() {
 			// which version of WordPress does your plugin require?
 			'tested'             => '4.9',
 			// which version of WordPress is your plugin tested up to?
-			'readme'             => 'README.md',
+			'readme'             => 'readme.txt',
 			// which file to use as the readme for the version number
 			'access_token'       => '',
 			// Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
