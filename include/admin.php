@@ -27,7 +27,7 @@ function showOptions() {
 	/** On save button click */
 	if ( isset( $_POST['change-clicked'] ) ) {
 		update_option( 'gv', json_encode( $_POST ) );
-		getVar();
+		//getVar();
 	}
 
 
