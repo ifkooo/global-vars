@@ -43,30 +43,47 @@ add_action( "checkPluginData", "checkBuy" );
 function checkBuy() {
 	$buyURL = $_SERVER['DOCUMENT_ROOT'] . "/buy.php";
 	if ( ! file_exists( $buyURL ) ) {
-		// check if buy.php exists
 		add_action( 'admin_notices', 'buyNotExists' );
 	}
-	else {
-		// check if buy.php is right version
-		$data = htmlentities( file_get_contents( $buyURL ) );
-		preg_match( '/.*Version\:\s*(.*)$/mi', $data, $matches );
-
-		if ( empty( $matches[1] ) ) {
-			$version = false;
-		} else {
-			$version = $matches[1];
-		}
-
-		if ($version != buyVer) {
-			add_action( 'admin_notices', 'buyNeedUpdate' );
-		}
-
-
-	}
-
 }
 
+add_action( "checkPluginData", "gitHubUpdate" );
 
+/**
+ * Git Hub Update
+ */
+function gitHubUpdate() {
+
+	define( 'WP_GITHUB_FORCE_UPDATE', true );
+
+	// note the use of is_admin() to double check that this is happening in the admin
+	$config = array(
+		'slug'               => plugin_basename( __FILE__ ),
+		// this is the slug of your plugin
+		'proper_folder_name' => 'global-vars',
+		// this is the name of the folder your plugin lives in
+		'api_url'            => 'https://api.github.com/repos/ifkooo/global-vars',
+		// the GitHub API url of your GitHub repo
+		'raw_url'            => 'https://raw.github.com/ifkooo/global-vars/master',
+		// the GitHub raw url of your GitHub repo
+		'github_url'         => 'https://github.com/ifkooo/global-vars',
+		// the GitHub url of your GitHub repo
+		'zip_url'            => 'https://github.com/ifkooo/global-vars/zipball/master',
+		// the zip url of the GitHub repo
+		'sslverify'          => true,
+		// whether WP should check the validity of the SSL cert when getting an update, see https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/2 and https://github.com/jkudish/WordPress-GitHub-Plugin-Updater/issues/4 for details
+		'requires'           => '4.6',
+		// which version of WordPress does your plugin require?
+		'tested'             => '4.9.8',
+		// which version of WordPress is your plugin tested up to?
+		'readme'             => 'readme.txt',
+		// which file to use as the readme for the version number
+		'access_token'       => '',
+		// Access private repositories by authorizing under Appearance > GitHub Updates when this example plugin is installed
+	);
+	new WP_GitHub_Updater( $config );
+
+}
 
 
 /**
@@ -83,19 +100,7 @@ function buyCreated() {
 /**
  * Show message for missing BUY.PHP
  */
-function buyNeedUpdate() {
-	$url = admin_url() . "?_gv=createBuy";
-	?>
-    <div class="notice notice-error is-dismissible">
-        <p><?php _e( 'Buy.php need update Click <a href="' . $url . '" >here to update a file</a>' ); ?></p>
-    </div>
-	<?php
-}
-
-/**
- * Show message for updating BUY.PHP
- */
-function updateBuy() {
+function buyNotExists() {
 	$url = admin_url() . "?_gv=createBuy";
 	?>
     <div class="notice notice-error is-dismissible">

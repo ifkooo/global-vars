@@ -17,6 +17,9 @@ You can manage shortcodes and add them to your posts
 
 == Changelog ==
 
+= 3.6 =
+* Fix bugs
+
 = 3.5 =
 * Check for buy.php version
 
