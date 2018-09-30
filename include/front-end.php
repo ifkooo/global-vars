@@ -17,6 +17,11 @@ function replace_text( $text ) {
 	global $gv;
 	global $list;
 
+	//exclude pages;
+	if (is_page()) {
+		return $text;
+	}
+
 	for ( $i = 0; $i < count( $list ); $i ++ ) {
 		if ( $list[ $i ]["auto"] == 1 ) {
 			$text .= stripslashes( $gv[ $list[ $i ]["name"] ] );

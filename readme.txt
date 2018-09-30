@@ -17,6 +17,12 @@ You can manage shortcodes and add them to your posts
 
 == Changelog ==
 
+= 3.8 =
+* Add exclude page to show banner
+
+= 3.7 =
+* Fix bugs
+
 = 3.6 =
 * Fix bugs
 
